@@ -1,6 +1,6 @@
-import tkinter as tk #libreria para crear las ventanas de la interfaz grafica 
+import tkinter as tk 
 from tkinter import filedialog, messagebox, ttk
-import matplotlib.pyplot as plt #libreria para dibujar los graficos de los datos en el eje X y Y
+import matplotlib.pyplot as plt 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.colors import ListedColormap
 import csv
@@ -10,8 +10,8 @@ import numpy as np
 
 
 
-def calcular_regresion(valores_x, valores_y): # funccion para calcular la recta de regresion
-    total = len(valores_x)              #operacione smatematicas manuales segun las formulas y ecauciones de la regresiion lineal
+def calcular_regresion(valores_x, valores_y): 
+    total = len(valores_x)              
     promedio_x = sum(valores_x) / total
     promedio_y = sum(valores_y) / total
     numerador = sum((valores_x[i] - promedio_x) * (valores_y[i] - promedio_y) for i in range(total))
@@ -26,10 +26,10 @@ def calcular_error_mse(datos_x, datos_y, pendiente, intercepto): #Funcion para c
 def predecir_valor(x_input, pendiente, intercepto): #Funcion para hacer una prediccion
     return pendiente * x_input + intercepto
 
-def distancia_euclidiana(punto_a, punto_b): #Funcion para calcular la distancia entre 2 puntos
+def distancia_euclidiana(punto_a, punto_b): 
     return math.sqrt(sum((a - b) ** 2 for a, b in zip(punto_a, punto_b)))
 
-def knn_clasificar(datos_entrenamiento, etiquetas, punto_nuevo, vecinos):  #Funcion principal del algoritmoo KNN
+def knn_clasificar(datos_entrenamiento, etiquetas, punto_nuevo, vecinos):  
     lista_distancias = [(distancia_euclidiana(punto_nuevo, datos_entrenamiento[i]), etiquetas[i]) #Calcula la distancia del nuevo punto a todos los puntos del dataset
   
                         for i in range(len(datos_entrenamiento))]
@@ -43,7 +43,7 @@ def knn_clasificar(datos_entrenamiento, etiquetas, punto_nuevo, vecinos):  #Func
 class AplicacionIA:
     def __init__(self, ventana):
         self.ventana = ventana
-        ventana.title("Proyecto IA - Byron Duval") #titulo principal de la ventana
+        ventana.title("Proyecto IA - Byron Duval") 
         ventana.geometry("850x850")
 
         self.datos_x = []
@@ -55,8 +55,8 @@ class AplicacionIA:
         pestañas = ttk.Notebook(ventana)
         self.pestaña_lr = ttk.Frame(pestañas)
         self.pestaña_knn = ttk.Frame(pestañas)
-        pestañas.add(self.pestaña_lr, text="Regresión Lineal") #pestaña de regresion lineal
-        pestañas.add(self.pestaña_knn, text="KNN") #pestaña de KNN
+        pestañas.add(self.pestaña_lr, text="Regresión Lineal") 
+        pestañas.add(self.pestaña_knn, text="KNN") 
         pestañas.pack(expand=1, fill="both")
 
  
@@ -255,3 +255,4 @@ class AplicacionIA:
 ventana = tk.Tk() # para crear la ventana principal
 app = AplicacionIA(ventana) #Inicia la aplicacion con todas la funciones creadas
 ventana.mainloop() # permanece la ventana abierta
+
